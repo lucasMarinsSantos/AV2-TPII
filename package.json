@@ -1,7 +1,7 @@
 {
-  "name": "atlantis-av2",
+  "name": "av2-paysandu",
   "version": "1.0.0",
-  "description": "Sistema Atlantis - AV2",
+  "description": "AV2 - Paysandu",
   "scripts": {
     "start": "ts-node src/ts/app/app.ts"
   },
