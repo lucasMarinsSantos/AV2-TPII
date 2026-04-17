@@ -1,0 +1,17 @@
+{
+  "name": "atlantis-av2",
+  "version": "1.0.0",
+  "description": "Sistema Atlantis - AV2",
+  "scripts": {
+    "start": "ts-node src/ts/app/app.ts"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/prompt-sync": "^4.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  }
+}
