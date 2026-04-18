@@ -1,8 +1,8 @@
-import Processo from "../abstracoes/processo";
-import Armazem from "../dominio/armazem";
-import Cliente from "../modelos/cliente";
-import CadastrarDocumentosCliente from "./cadastrarDocumentosCliente";
-import CadastroEnderecoTitular from "./cadastroEnderecoTitular";
+import Processo from "../abstracoes/processo"
+import Armazem from "../dominio/armazem"
+import Cliente from "../modelos/cliente"
+import CadastrarDocumentosCliente from "./cadastrarDocumentosCliente"
+import CadastroEnderecoTitular from "./cadastroEnderecoTitular"
 
 export default class CadastroClienteDependente extends Processo {
     processar(): void {
@@ -28,6 +28,7 @@ export default class CadastroClienteDependente extends Processo {
         let nome = this.entrada.receberTexto('Qual o nome do dependente?')
         let nomeSocial = this.entrada.receberTexto('Qual o nome social do dependente?')
         let dataNascimento = this.entrada.receberData('Qual a data de nascimento?')
+
         let dependente = new Cliente(nome, nomeSocial, dataNascimento)
 
         this.processo = new CadastroEnderecoTitular(dependente)
@@ -38,8 +39,12 @@ export default class CadastroClienteDependente extends Processo {
 
         dependente.Titular = titular
         titular.adicionarDependente(dependente)
-        armazem.Clientes.push(dependente)
 
-        console.log(`Dependente cadastrado e vinculado ao titular ${titular.NomeSocial}!`)
+        try {
+            armazem.adicionarCliente(dependente)
+            console.log(`Dependente cadastrado e vinculado ao titular ${titular.NomeSocial}!`)
+        } catch (e: any) {
+            console.log(`Erro ao cadastrar dependente: ${e.message}`)
+        }
     }
 }

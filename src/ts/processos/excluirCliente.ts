@@ -1,5 +1,5 @@
-import Processo from "../abstracoes/processo";
-import Armazem from "../dominio/armazem";
+import Processo from "../abstracoes/processo"
+import Armazem from "../dominio/armazem"
 
 export default class ExcluirCliente extends Processo {
     processar(): void {
@@ -33,7 +33,7 @@ export default class ExcluirCliente extends Processo {
             }
             cliente.Dependentes.forEach(dep => {
                 let idx = armazem.Clientes.indexOf(dep)
-                if (idx !== -1) armazem.Clientes.splice(idx, 1)
+                if (idx !== -1) armazem.removerCliente(idx)
             })
         }
 
@@ -41,7 +41,7 @@ export default class ExcluirCliente extends Processo {
             cliente.Titular.removerDependente(cliente.NomeSocial)
         }
 
-        armazem.Clientes.splice(indice, 1)
+        armazem.removerCliente(armazem.Clientes.indexOf(cliente))
         console.log(`Cliente ${cliente.NomeSocial} excluído com sucesso!`)
     }
 }

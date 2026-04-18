@@ -1,8 +1,8 @@
-import Processo from "../abstracoes/processo";
-import Armazem from "../dominio/armazem";
-import ImpressaorCliente from "../impressores/impressorCliente";
-import Impressor from "../interfaces/impressor";
-import Cliente from "../modelos/cliente";
+import Processo from "../abstracoes/processo"
+import Armazem from "../dominio/armazem"
+import ImpressorCliente from "../impressores/impressorCliente"
+import Impressor from "../interfaces/impressor"
+import Cliente from "../modelos/cliente"
 
 export default class ListagemTitulares extends Processo {
     private clientes: Cliente[]
@@ -17,7 +17,7 @@ export default class ListagemTitulares extends Processo {
         let encontrou = false
         this.clientes.forEach(cliente => {
             if (cliente.Titular === undefined) {
-                this.impressor = new ImpressaorCliente(cliente)
+                this.impressor = new ImpressorCliente(cliente)
                 console.log(this.impressor.imprimir())
                 encontrou = true
             }

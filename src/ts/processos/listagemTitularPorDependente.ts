@@ -1,6 +1,6 @@
-import Processo from "../abstracoes/processo";
-import Armazem from "../dominio/armazem";
-import ImpressaorCliente from "../impressores/impressorCliente";
+import Processo from "../abstracoes/processo"
+import Armazem from "../dominio/armazem"
+import ImpressorCliente from "../impressores/impressorCliente"
 
 export default class ListagemTitularPorDependente extends Processo {
     processar(): void {
@@ -24,7 +24,7 @@ export default class ListagemTitularPorDependente extends Processo {
 
         let dependente = dependentes[indice]
         console.log(`\nTitular de ${dependente.NomeSocial}:`)
-        let impressor = new ImpressaorCliente(dependente.Titular)
+        let impressor = new ImpressorCliente(dependente.Titular)
         console.log(impressor.imprimir())
     }
 }

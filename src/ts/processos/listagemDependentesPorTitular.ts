@@ -1,7 +1,7 @@
-import Processo from "../abstracoes/processo";
-import Armazem from "../dominio/armazem";
-import ImpressaorCliente from "../impressores/impressorCliente";
-import Impressor from "../interfaces/impressor";
+import Processo from "../abstracoes/processo"
+import Armazem from "../dominio/armazem"
+import ImpressorCliente from "../impressores/impressorCliente"
+import Impressor from "../interfaces/impressor"
 
 export default class ListagemDependentesPorTitular extends Processo {
     processar(): void {
@@ -33,7 +33,7 @@ export default class ListagemDependentesPorTitular extends Processo {
 
         let impressor: Impressor
         titular.Dependentes.forEach(dep => {
-            impressor = new ImpressaorCliente(dep)
+            impressor = new ImpressorCliente(dep)
             console.log(impressor.imprimir())
         })
     }

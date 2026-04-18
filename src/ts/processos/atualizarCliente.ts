@@ -1,5 +1,6 @@
-import Processo from "../abstracoes/processo";
-import Armazem from "../dominio/armazem";
+import Processo from "../abstracoes/processo"
+import Armazem from "../dominio/armazem"
+import CadastroEnderecoTitular from "./cadastroEnderecoTitular"
 
 export default class AtualizarCliente extends Processo {
     processar(): void {
@@ -25,16 +26,30 @@ export default class AtualizarCliente extends Processo {
         console.log(`Editando: ${cliente.NomeSocial}`)
         console.log(`| 1 - Alterar nome`)
         console.log(`| 2 - Alterar nome social`)
+        console.log(`| 3 - Alterar endereço`)
 
         let opcao = this.entrada.receberNumero('Qual campo deseja alterar?')
         switch (opcao) {
             case 1:
-                cliente.Nome = this.entrada.receberTexto('Novo nome:')
-                console.log('Nome atualizado com sucesso!')
+                try {
+                    cliente.Nome = this.entrada.receberTexto('Novo nome:')
+                    console.log('Nome atualizado com sucesso!')
+                } catch (e: any) {
+                    console.log(`Erro: ${e.message}`)
+                }
                 break
             case 2:
-                cliente.NomeSocial = this.entrada.receberTexto('Novo nome social:')
-                console.log('Nome social atualizado com sucesso!')
+                try {
+                    cliente.NomeSocial = this.entrada.receberTexto('Novo nome social:')
+                    console.log('Nome social atualizado com sucesso!')
+                } catch (e: any) {
+                    console.log(`Erro: ${e.message}`)
+                }
+                break
+            case 3:
+                this.processo = new CadastroEnderecoTitular(cliente)
+                this.processo.processar()
+                console.log('Endereço atualizado com sucesso!')
                 break
             default:
                 console.log('Opção inválida.')

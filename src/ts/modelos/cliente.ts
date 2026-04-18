@@ -14,8 +14,10 @@ export default class Cliente {
     private titular!: Cliente
 
     constructor(nome: string, nomeSocial: string, dataNascimento: Date) {
-        this.nome = nome
-        this.nomeSocial = nomeSocial
+        if (!nome || nome.trim() === '') throw new Error('Nome não pode ser vazio.')
+        if (!nomeSocial || nomeSocial.trim() === '') throw new Error('Nome social não pode ser vazio.')
+        this.nome = nome.trim()
+        this.nomeSocial = nomeSocial.trim()
         this.dataNascimento = dataNascimento
         this.dataCadastro = new Date()
     }
@@ -30,14 +32,26 @@ export default class Cliente {
     public get Dependentes() { return this.dependentes }
     public get Titular() { return this.titular }
 
-    public set Nome(nome: string) { this.nome = nome }
-    public set NomeSocial(nomeSocial: string) { this.nomeSocial = nomeSocial }
+    public set Nome(nome: string) {
+        if (!nome || nome.trim() === '') throw new Error('Nome não pode ser vazio.')
+        this.nome = nome.trim()
+    }
+    public set NomeSocial(nomeSocial: string) {
+        if (!nomeSocial || nomeSocial.trim() === '') throw new Error('Nome social não pode ser vazio.')
+        this.nomeSocial = nomeSocial.trim()
+    }
     public set Endereco(endereco: Endereco) { this.endereco = endereco }
-    public set Titular(titular: Cliente) { this.titular = titular }
+    public set Titular(titular: Cliente) {
+        if (titular === this) throw new Error('Um cliente não pode ser titular de si mesmo.')
+        this.titular = titular
+    }
 
     public adicionarDependente(dependente: Cliente): void {
+        if (!dependente) throw new Error('Dependente inválido.')
+        if (dependente === this) throw new Error('Um cliente não pode ser dependente de si mesmo.')
         this.dependentes.push(dependente)
     }
+
     public removerDependente(nomeSocial: string): void {
         this.dependentes = this.dependentes.filter(d => d.NomeSocial !== nomeSocial)
     }
