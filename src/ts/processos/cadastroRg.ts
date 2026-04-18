@@ -1,6 +1,6 @@
-import Processo from "../abstracoes/processo"
-import Documento from "../modelos/documento"
-import Cliente from "../modelos/cliente"
+import Processo from "../abstracoes/processo";
+import Documento from "../modelos/documento";
+import Cliente from "../modelos/cliente";
 
 export default class CadastroRg extends Processo {
     private cliente: Cliente
@@ -12,12 +12,8 @@ export default class CadastroRg extends Processo {
             return
         }
         let numero = this.entrada.receberTexto('Qual o número do RG?')
-        try {
-            let documento = new Documento('RG', numero)
-            this.cliente.Documentos.push(documento)
-            console.log('RG cadastrado com sucesso!')
-        } catch (e: any) {
-            console.log(`Erro ao cadastrar RG: ${e.message}`)
-        }
+        let documento = new Documento('RG', numero)
+        this.cliente.Documentos.push(documento)
+        console.log('RG cadastrado com sucesso!')
     }
 }
